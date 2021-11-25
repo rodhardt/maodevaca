@@ -7,7 +7,7 @@ export default createGlobalStyle`
         padding: 0;
         outline: 0;
         font-size: 16px;
-        font-family: 'Space Mono', monospace;
+        font-family: 'Roboto', sans-serif;
         
     }
     :root {

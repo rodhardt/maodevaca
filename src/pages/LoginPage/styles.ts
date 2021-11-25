@@ -8,7 +8,7 @@ export const LoginPageStyled = styled.main`
   .background-opacity {
     width: 100%;
     height: 100%;
-    background-color: #ffffff40;
+    background-color: #00000099;
     display: flex;
     align-items: center;
     justify-content: center;

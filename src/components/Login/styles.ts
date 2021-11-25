@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const LoginStyled = styled.section`
   width: 95%;
   max-width: 450px;
-  height: 500px;
+  padding-bottom: 60px;
   background-color: var(--mainGray);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   color: white;
@@ -15,7 +15,7 @@ export const LoginStyled = styled.section`
     justify-content: center;
     width: 100%;
     margin: auto;
-    background-color: #202020;
+    background-color: #252525;
     padding: 5px 10px;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
@@ -37,9 +37,16 @@ export const LoginStyled = styled.section`
     font-size: 30px;
   }
 
+  h3 {
+    font-size: 18px;
+    text-align: center;
+    margin: 20px auto 10px;
+    color: #404040;
+  }
+
   form {
     width: 85%;
-    margin: 40px auto 10px;
+    margin: 40px auto 25px;
     display: flex;
     flex-direction: column;
   }
@@ -58,13 +65,14 @@ export const LoginStyled = styled.section`
     background-color: var(--lightGray);
     border-bottom: 1px solid var(--darkGray);
     padding-left: 10px;
+    color: #404040;
   }
 
   label {
     position: absolute;
     padding: 0 4px;
     color: red;
-    top: 0;
+    top: 4px;
     left: 10px;
     color: #404040;
     font-size: 20px;
@@ -77,7 +85,8 @@ export const LoginStyled = styled.section`
   }
 
   input {
-    &:not(:placeholder-shown) + label {
+    &:not(:placeholder-shown) + label,
+    &:focus + label {
       transition: 0.3s;
       top: 0px;
       left: 5px;
@@ -100,8 +109,13 @@ export const LoginStyled = styled.section`
 
   .fail input + label,
   .fail input {
-    color: #dd0000;
-    border-color: #dd0000;
+    color: #ee0000;
+    border-color: #ee0000;
+  }
+
+  .fail input {
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
   }
 
   .button-container {
@@ -114,12 +128,39 @@ export const LoginStyled = styled.section`
   }
 
   button {
-    height: 32px;
+    height: 40px;
+    font-size: 18px;
     border: 1px solid var(--darkerGray);
     border-radius: 5px;
+    border-color: #00000000;
+    transition: 0.3s;
   }
 
   .confirm-button {
-    background-color: #eec0cb;
+    background-color: #e663a3;
+    color: white;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+  }
+
+  .confirm-button:hover {
+    color: #c64383;
+    font-weight: bold;
+    background-color: #e663a360;
+  }
+
+  .switch-button {
+    border: none;
+    border-bottom: 2px solid #00cc00;
+    background-color: #00cc0020;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    color: #006000;
+  }
+
+  .switch-button:hover {
+    background-color: #00900090;
+    color: white;
+    font-weight: bold;
+    border-color: #008000;
   }
 `;

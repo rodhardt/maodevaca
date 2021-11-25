@@ -10,17 +10,30 @@ import Logo from "../../assets/images/mao-de-vaca.png";
 
 import { toast } from "react-toastify";
 
-interface UserLoginData {
+interface UserRegisterData {
+  name: string;
   email: string;
   password: string;
 }
 
-function Login() {
+interface RegisterProps {
+  handleRegister: (boolean: boolean) => void;
+}
+
+function Register({ handleRegister }: RegisterProps) {
   let navigate = useNavigate();
 
   const formSchema = yup.object().shape({
+    name: yup.string().required("Nome obrigatório"),
     email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
-    password: yup.string().required("Senha obrigatória"),
+    password: yup
+      .string()
+      .required("Senha obrigatória")
+      .min(6, "Mínimo 6 dígitos"),
+    confirmPassword: yup
+      .string()
+      .required("Confirme sua senha")
+      .oneOf([yup.ref("password"), null], "Senhas diferentes"),
   });
 
   const {
@@ -29,7 +42,7 @@ function Login() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(formSchema) });
 
-  const loginSucceeded = (name: string) =>
+  const registerSucceeded = (name: string) =>
     toast.success(`Bem-vindo ${name}`, {
       position: "top-right",
       autoClose: 5000,
@@ -40,8 +53,8 @@ function Login() {
       progress: undefined,
     });
 
-  const loginFailed = () =>
-    toast.error("Login falhou", {
+  const registerFailed = () =>
+    toast.error("Cadastro falhou", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -51,18 +64,22 @@ function Login() {
       progress: undefined,
     });
 
-  const handleForm = (userLoginData: UserLoginData) => {
+  const handleForm = (userRegisterData: UserRegisterData) => {
     api
-      .post("/login", userLoginData)
+      .post("/register", {
+        name: userRegisterData.name,
+        email: userRegisterData.email,
+        password: userRegisterData.password,
+      })
       .then((response) => {
         localStorage.setItem("@mao-de-vaca:token", response.data.accessToken);
         localStorage.setItem("@mao-de-vaca:id", response.data.user.id);
         navigate("dashboard");
-        loginSucceeded(response.data.user.name);
+        registerSucceeded(response.data.user.name);
       })
       .catch((err) => {
         console.log(err);
-        loginFailed();
+        registerFailed();
       });
   };
 
@@ -75,7 +92,17 @@ function Login() {
         <h1>mão-de-vaca</h1>
       </div>
 
+      <h3>Cadastre-se</h3>
+
       <form onSubmit={handleSubmit(handleForm)}>
+        <div
+          className={
+            errors.name?.message ? "input-container fail" : "input-container"
+          }
+        >
+          <input placeholder=" " {...register("name")}></input>
+          <label>{errors.name?.message || "Nome"}</label>
+        </div>
         <div
           className={
             errors.email?.message ? "input-container fail" : "input-container"
@@ -99,18 +126,34 @@ function Login() {
           ></input>
           <label>{errors.password?.message || "Senha"}</label>
         </div>
+        <div
+          className={
+            errors.confirmPassword?.message
+              ? "input-container fail"
+              : "input-container"
+          }
+        >
+          <input
+            placeholder=" "
+            type="password"
+            {...register("confirmPassword")}
+          ></input>
+          <label>
+            {errors.confirmPassword?.message || "Confirme sua senha"}
+          </label>
+        </div>
 
         <button type="submit" className="confirm-button">
-          Login
+          Cadastrar
         </button>
       </form>
       <div className="button-container">
-        <button className="switch-button" onClick={() => navigate("dashboard")}>
-          Cadastre-se
+        <button className="switch-button" onClick={() => handleRegister(false)}>
+          Já tem cadastro? Faça Login
         </button>
       </div>
     </LoginStyled>
   );
 }
 
-export default Login;
+export default Register;
