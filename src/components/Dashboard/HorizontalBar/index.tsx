@@ -151,7 +151,7 @@ function HorizontalBar() {
                   }`,
                 }}
               >
-                {group[1]}
+                R$ {group[1]}
               </div>
               <td></td>
               <td></td>

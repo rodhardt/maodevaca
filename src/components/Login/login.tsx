@@ -61,7 +61,7 @@ function Login({ handleRegister }: LoginProps) {
       .then((response) => {
         localStorage.setItem("@mao-de-vaca:token", response.data.accessToken);
         localStorage.setItem("@mao-de-vaca:id", response.data.user.id);
-        navigate("dashboard");
+        navigate("/dashboard");
         loginSucceeded(response.data.user.name);
       })
       .catch((err) => {

@@ -39,6 +39,7 @@ export const HorizontalBarStyled = styled.section`
     border-radius: 3px;
     padding: 0 3px;
     background-color: #ffffff;
+    font-size: 14px;
   }
 
   td {

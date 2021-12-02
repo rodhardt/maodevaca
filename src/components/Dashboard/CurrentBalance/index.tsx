@@ -11,18 +11,18 @@ function CurrentBalance() {
         </tr>
         <tr>
           <td>R$ 4150,00</td>
-          <td>05</td>
+          <td className="day">05</td>
         </tr>
         <tr>
-          <td>R$ 4150,00</td>
-          <td>Realizados</td>
+          <td>R$ 2000,00</td>
+          <td>- Gasto</td>
         </tr>
         <tr>
-          <td>R$ 4150,00</td>
-          <td>Previstos</td>
+          <td>R$ 1250,00</td>
+          <td>- Previsto</td>
         </tr>
         <tr>
-          <td>R$ 4150,00</td>
+          <td>R$ 1000,00</td>
           <td></td>
         </tr>
       </table>
