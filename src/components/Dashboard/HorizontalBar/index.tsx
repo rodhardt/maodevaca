@@ -132,7 +132,23 @@ function HorizontalBar() {
                 className="group-bar"
                 style={{
                   width: `calc(${group[1] / maxValue} * (100% - 100px))`,
-                  backgroundColor: `rgb(255, 0, 0, 0.2)`,
+                  backgroundColor: `rgb(255, 0, 0, ${
+                    group[1] / maxValue < 0.4 ? 0.4 : group[1] / maxValue
+                  })`,
+                }}
+              ></div>
+              <div
+                className="bar-value"
+                style={{
+                  left: `${
+                    group[1] / maxValue < 0.5
+                      ? `calc(105px + (${
+                          group[1] / maxValue
+                        } * (100% - 100px)))`
+                      : `calc(105px + (${
+                          group[1] / maxValue
+                        } * (100% - 100px) / 2))`
+                  }`,
                 }}
               >
                 {group[1]}

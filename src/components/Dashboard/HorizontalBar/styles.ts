@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const HorizontalBarStyled = styled.section`
   width: 95%;
+  max-width: 900px;
   margin: auto;
 
   table {
@@ -25,9 +26,19 @@ export const HorizontalBarStyled = styled.section`
 
   .group-bar {
     position: absolute;
-
     top: 50%;
     transform: translateY(-50%);
+    height: 30px;
+  }
+
+  .bar-value {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 1px solid #50505090;
+    border-radius: 3px;
+    padding: 0 3px;
+    background-color: #ffffff;
   }
 
   td {
