@@ -1,10 +1,10 @@
 import { HorizontalBarStyled } from "./styles";
 import { ExpenseData } from "../../../assets/types/index";
 
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function HorizontalBar() {
-  const expenses = [
+  const [expenses, setExpenses] = useState([
     {
       id: 1,
       name: "compras bistek",
@@ -95,7 +95,9 @@ function HorizontalBar() {
       frequency: "",
       date: "06/12/2021",
     },
-  ];
+  ]);
+
+  useEffect(() => {}, []);
 
   const expensesByGroup: { group: number } = expenses.reduce<any>(
     (acm: any, cv: ExpenseData) => {
@@ -121,6 +123,8 @@ function HorizontalBar() {
 
   return (
     <HorizontalBarStyled>
+      <h2>Gastos</h2>
+      {expenses.length}
       <table>
         {expensesEntriesSorted.map(
           (group: [group: string, value: number], index: number) => (
@@ -132,8 +136,8 @@ function HorizontalBar() {
                 className="group-bar"
                 style={{
                   width: `calc(${group[1] / maxValue} * (100% - 100px))`,
-                  backgroundColor: `rgb(255, 0, 0, ${
-                    group[1] / maxValue < 0.4 ? 0.4 : group[1] / maxValue
+                  backgroundColor: `rgb(220, 20, 20, ${
+                    group[1] / maxValue < 0.2 ? 0.2 : group[1] / maxValue
                   })`,
                 }}
               ></div>

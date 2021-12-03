@@ -70,6 +70,10 @@ function Register({ handleRegister }: RegisterProps) {
         name: userRegisterData.name,
         email: userRegisterData.email,
         password: userRegisterData.password,
+        finances: {
+          wage: { value: 1000, day: 5 },
+          expenses: [],
+        },
       })
       .then((response) => {
         localStorage.setItem("@mao-de-vaca:token", response.data.accessToken);

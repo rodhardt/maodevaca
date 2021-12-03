@@ -6,14 +6,33 @@ export const CurrentBalanceStyled = styled.section`
 
   table {
     margin: auto;
+    border-collapse: collapse;
   }
 
-  th,
-  td {
-    padding: 4px 8px;
+  tr {
+    position: relative;
   }
 
   .day {
     text-align: center;
+  }
+
+  input,
+  input::placeholder {
+    font-weight: bold;
+    opacity: 1;
+    color: #009000;
+    text-align: center;
+    width: 100%;
+  }
+
+  td:first-child {
+    text-align: center;
+  }
+
+  tr svg {
+    position: absolute;
+    left: 20px;
+    color: #cc2020;
   }
 `;
