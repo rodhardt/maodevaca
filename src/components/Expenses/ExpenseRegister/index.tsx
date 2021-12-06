@@ -30,9 +30,7 @@ function ExpensesRegister() {
   } = useForm({ resolver: yupResolver(formSchema) });
 
   const handleForm = (data: any) => {
-    console.log(data);
     const current = new Date(data.date);
-    console.log(current.getDate());
   };
 
   return (

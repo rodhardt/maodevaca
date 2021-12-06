@@ -11,6 +11,7 @@ export interface ExpenseData {
   subgroup?: string;
   frequency?: string;
   date?: string;
+  active?: boolean;
 }
 
 export interface UserData {
