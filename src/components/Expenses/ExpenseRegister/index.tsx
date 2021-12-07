@@ -7,7 +7,6 @@ import { useForm } from "react-hook-form";
 
 import { HiSwitchVertical } from "react-icons/hi";
 import { useUserInfo } from "../../../providers/UserInfo";
-import { ExpenseData } from "../../../assets/types";
 
 function ExpensesRegister() {
   const { finances, updateFinances } = useUserInfo();
@@ -59,15 +58,15 @@ function ExpensesRegister() {
         expenses: [...finances.expenses, newExpense],
       },
     });
-    console.log("passou");
   };
 
   return (
     <ExpensesRegisterStyled>
       <h2>Novo Gasto</h2>
+
       <form className="expense-form" onSubmit={handleSubmit(handleForm)}>
         <div className="input-container">
-          <label>Nome</label>
+          <label>Nome:</label>
           <input
             className={errors.name?.message ? "fail" : "input"}
             placeholder="nome do gasto"
@@ -76,7 +75,7 @@ function ExpensesRegister() {
         </div>
 
         <div className="input-container">
-          <label>Valor</label>
+          <label>Valor:</label>
           <input
             className={errors.value?.message ? "fail" : "input"}
             placeholder="R$ 100,00"
@@ -88,7 +87,7 @@ function ExpensesRegister() {
         </div>
 
         <div className="input-container">
-          <label>Data</label>
+          <label>Data:</label>
           <input
             className={errors.date?.message ? "fail" : "input"}
             type="date"
@@ -96,40 +95,45 @@ function ExpensesRegister() {
           />
         </div>
 
-        <div className="input-container">
+        <div className="input-container group">
           {!isNewGroup ? (
             <>
-              <label>Grupo</label>
+              <label>Grupo:</label>
               <select
                 className={errors.group?.message ? "fail" : "input"}
                 {...register("group")}
               >
-                <option value="">--Selecione um grupo--</option>
+                <option value="">--Selecione na lista--</option>
                 {groups.map((group, index) => (
                   <option key={index} value={group}>
                     {group}
                   </option>
                 ))}
               </select>
-              <div onClick={() => setIsNewGroup(true)}>Novo</div>
+              <div className="group-switch" onClick={() => setIsNewGroup(true)}>
+                Novo
+              </div>
             </>
           ) : (
             <>
-              <label>Novo Grupo</label>
+              <label>Grupo:</label>
               <input
                 className={errors.group?.message ? "fail" : "input"}
                 placeholder="Novo Grupo"
                 {...register("group")}
               />
-              <div onClick={() => setIsNewGroup(false)}>
+              <div
+                className="group-switch"
+                onClick={() => setIsNewGroup(false)}
+              >
                 <HiSwitchVertical />
               </div>
             </>
           )}
         </div>
 
-        <div className="input-container">
-          <label>Frequência</label>
+        <div className="input-container frequency">
+          <label>Frequência:</label>
           <input
             type="radio"
             value="única"

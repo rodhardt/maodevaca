@@ -44,9 +44,9 @@ function ExpensesTable() {
         )}
         <table>
           <tr>
-            <th>Nome</th>
-            <th>Valor</th>
-            <th>Data</th>
+            <th className="head-name">Nome</th>
+            <th className="head-value">Valor</th>
+            <th className="head-date">Data</th>
           </tr>
           {currentExpenses.map((expense, index) => (
             <tr key={index} onClick={() => handleExpenseModal(expense)}>

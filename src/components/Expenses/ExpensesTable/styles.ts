@@ -4,9 +4,26 @@ export const ExpensesTableStyled = styled.section`
   width: 95%;
   margin: auto;
 
+  table {
+    width: 100%;
+    margin: auto;
+  }
+
+  h3 {
+    margin: 15px auto 5px;
+  }
+
+  .head-value {
+    width: 200px;
+  }
+
   tr,
   td {
     position: relative;
+  }
+
+  tr {
+    height: 38px;
   }
 
   .full-name {
