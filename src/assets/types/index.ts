@@ -10,7 +10,7 @@ export interface ExpenseData {
   group: string;
   subgroup?: string;
   frequency?: string;
-  date?: string;
+  date: string;
   active?: boolean;
 }
 

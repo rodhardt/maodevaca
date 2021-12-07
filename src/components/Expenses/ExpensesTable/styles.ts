@@ -3,18 +3,40 @@ import styled from "styled-components";
 export const ExpensesTableStyled = styled.section`
   width: 95%;
   margin: auto;
+  padding-bottom: 40px;
 
   table {
     width: 100%;
+    max-width: 720px;
     margin: auto;
+    border-collapse: collapse;
   }
 
   h3 {
-    margin: 15px auto 5px;
+    margin: 10px auto 10px;
+    width: 100%;
+    position: absolute;
+    background-color: #ffffff00;
+    color: #404040;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .head-value {
-    width: 200px;
+    width: 84px;
+  }
+  .head-date {
+    width: 72px;
+  }
+
+  .head-icons {
+    width: 34px;
+  }
+
+  th {
+    background-color: #dddddd;
+    color: #404040;
   }
 
   tr,
@@ -22,27 +44,37 @@ export const ExpensesTableStyled = styled.section`
     position: relative;
   }
 
+  td {
+    text-align: center;
+  }
+
   tr {
     height: 38px;
+    color: #404040;
   }
 
-  .full-name {
-    display: none;
-    position: absolute;
-    z-index: 1;
-    background-color: var(--mainGray);
-    left: 0;
-    font-weight: bold;
+  tr:nth-child(2n + 1):not(.title-row) {
+    background-color: #e8e8e8;
   }
 
-  tr:hover .full-name {
-    display: block;
-    cursor: pointer;
+  .title-row {
+    background-color: #ffffff00;
+    color: #404040;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
   }
 
-  tr:hover {
+  tr:hover:not(.title-row):not(.heads) {
     cursor: pointer;
     font-weight: bold;
+  }
+
+  .icon-container {
+    display: flex;
+    height: 38px;
+    margin-left: 5px;
+    justify-content: center;
+    align-items: center;
   }
 
   .delete-icon {

@@ -43,47 +43,78 @@ function ExpensesTable() {
           <ExpenseModal expense={expenseForModal} closeModal={closeModal} />
         )}
         <table>
-          <tr>
+          <tr className="heads">
             <th className="head-name">Nome</th>
             <th className="head-value">Valor</th>
             <th className="head-date">Data</th>
+            <th className="head-icons"></th>
           </tr>
-          {currentExpenses.map((expense, index) => (
-            <tr key={index} onClick={() => handleExpenseModal(expense)}>
-              <td>
-                {expense.name.length > 12
-                  ? `${expense.name.slice(0, 12)}...`
-                  : expense.name}
-              </td>
+          {currentExpenses
+            .sort((a, b) => {
+              return (
+                Number(
+                  `${b.date.slice(6, 10)}${b.date.slice(3, 5)}${b.date.slice(
+                    0,
+                    2
+                  )}`
+                ) -
+                Number(
+                  `${a.date.slice(6, 10)}${a.date.slice(3, 5)}${a.date.slice(
+                    0,
+                    2
+                  )}`
+                )
+              );
+            })
+            .map((expense, index) => (
+              <tr key={index} onClick={() => handleExpenseModal(expense)}>
+                <td>{expense.name}</td>
 
-              <td>{expense.value.toFixed(2).replace(".", ",")}</td>
-              <td>{expense.date?.slice(0, 5)}</td>
-              <div className="full-name">{expense.name}</div>
-              <div>
-                <BsFillTrashFill
-                  className="delete-icon"
-                  onClick={(evt) => deleteExpense(evt, expense)}
-                />
-              </div>
-            </tr>
-          ))}
-          <h3>Despesas de outros períodos</h3>
+                <td>{expense.value.toFixed(2).replace(".", ",")}</td>
+                <td>{expense.date?.slice(0, 5)}</td>
+
+                <div className="icon-container">
+                  <BsFillTrashFill
+                    className="delete-icon"
+                    onClick={(evt) => deleteExpense(evt, expense)}
+                  />
+                </div>
+              </tr>
+            ))}
+          <tr className="title-row">
+            <h3>Despesas de outros períodos</h3>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
           {finances.expenses
             .filter((expense) =>
               currentExpenses.every((current) => current.id !== expense.id)
             )
+            .sort((a, b) => {
+              return (
+                Number(
+                  `${b.date.slice(6, 10)}${b.date.slice(3, 5)}${b.date.slice(
+                    0,
+                    2
+                  )}`
+                ) -
+                Number(
+                  `${a.date.slice(6, 10)}${a.date.slice(3, 5)}${a.date.slice(
+                    0,
+                    2
+                  )}`
+                )
+              );
+            })
             .map((expense, index) => (
               <tr key={index} onClick={() => handleExpenseModal(expense)}>
-                <td>
-                  {expense.name.length > 12
-                    ? `${expense.name.slice(0, 12)}...`
-                    : expense.name}
-                </td>
+                <td>{expense.name}</td>
 
                 <td>{expense.value.toFixed(2).replace(".", ",")}</td>
-                <td>{expense.date?.slice(0, 5)}</td>
-                <div className="full-name">{expense.name}</div>
-                <div>
+                <td>{expense.date.slice(0, 5)}</td>
+
+                <div className="icon-container">
                   <BsFillTrashFill
                     className="delete-icon"
                     onClick={(evt) => deleteExpense(evt, expense)}
