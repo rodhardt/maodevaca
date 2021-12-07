@@ -2,8 +2,11 @@ import { HorizontalBarStyled } from "./styles";
 import { ExpenseData } from "../../../assets/types/index";
 
 import { useState, useEffect } from "react";
+import { useUserInfo } from "../../../providers/UserInfo";
 
 function HorizontalBar() {
+  const { currentExpenses } = useUserInfo();
+
   const [expenses, setExpenses] = useState([
     {
       id: 1,
@@ -97,34 +100,61 @@ function HorizontalBar() {
     },
   ]);
 
-  useEffect(() => {}, []);
+  const [expensesByGroup, setExpensesByGroup] = useState({});
+  const [expensesEntriesSorted, setExpensesEntriesSorted] = useState<
+    [string, number][]
+  >([]);
+  const [maxValue, setMaxValue] = useState(1);
 
-  const expensesByGroup: { group: number } = expenses.reduce<any>(
-    (acm: any, cv: ExpenseData) => {
-      const { group, value } = cv;
-      return acm[group] === undefined
-        ? { ...acm, [group]: value }
-        : { ...acm, [group]: acm[group] + value };
-    },
-    {}
-  );
+  const chartDataGen = () => {
+    const newExpensesByGroup: { group: number } = currentExpenses.reduce<any>(
+      (acm: any, cv: ExpenseData) => {
+        const { group, value } = cv;
+        return acm[group] === undefined
+          ? { ...acm, [group]: value }
+          : { ...acm, [group]: acm[group] + value };
+      },
+      {}
+    );
+    setExpensesByGroup(newExpensesByGroup);
+    setExpensesEntriesSorted(
+      Object.entries(newExpensesByGroup).sort((a, b) => b[1] - a[1])
+    );
+    const expensesValues = Object.values(newExpensesByGroup);
+    setMaxValue(
+      expensesValues.reduce((acm: number, cv: number) => {
+        return acm > cv ? acm : cv;
+      }, expensesValues[0])
+    );
+  };
 
-  const expensesEntriesSorted = Object.entries(expensesByGroup).sort(
-    (a, b) => b[1] - a[1]
-  );
-  const expensesValues = Object.values(expensesByGroup);
+  useEffect(() => {
+    chartDataGen();
+  }, [currentExpenses]);
 
-  const maxValue = expensesValues.reduce((acm: number, cv: number) => {
-    return acm > cv ? acm : cv;
-  }, expensesValues[0]);
-  const minValue = expensesValues.reduce((acm: number, cv: number) => {
-    return acm < cv ? acm : cv;
-  }, expensesValues[0]);
+  // const expensesByGroup: { group: number } = expenses.reduce<any>(
+  //   (acm: any, cv: ExpenseData) => {
+  //     const { group, value } = cv;
+  //     return acm[group] === undefined
+  //       ? { ...acm, [group]: value }
+  //       : { ...acm, [group]: acm[group] + value };
+  //   },
+  //   {}
+  // );
+
+  // const expensesEntriesSorted = Object.entries(expensesByGroup).sort(
+  //   (a, b) => b[1] - a[1]
+  // );
+  // const expensesValues = Object.values(expensesByGroup);
+
+  // const maxValue = expensesValues.reduce((acm: number, cv: number) => {
+  //   return acm > cv ? acm : cv;
+  // }, expensesValues[0]);
 
   return (
     <HorizontalBarStyled>
       <h2>Gastos</h2>
-      {expenses.length}
+
       <table>
         {expensesEntriesSorted.map(
           (group: [group: string, value: number], index: number) => (
