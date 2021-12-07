@@ -1,19 +1,26 @@
 import { ExpensesRegisterStyled } from "./styles";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 
 import { HiSwitchVertical } from "react-icons/hi";
+import { useUserInfo } from "../../../providers/UserInfo";
+import { ExpenseData } from "../../../assets/types";
 
 function ExpensesRegister() {
+  const { finances, updateFinances } = useUserInfo();
+
   const [isNewGroup, setIsNewGroup] = useState(false);
-  const [groups, setGroups] = useState([
-    "alimentação",
-    "transporte",
-    "aluguel",
-  ]);
+  const [groups, setGroups] = useState<string[]>([]);
+
+  useEffect(() => {
+    const groupsArray = finances.expenses.map((expense) => expense.group);
+    setGroups(
+      groupsArray.filter((group, index) => index === groupsArray.indexOf(group))
+    );
+  }, [finances]);
 
   const formSchema = yup.object().shape({
     name: yup.string().required("*"),
@@ -31,6 +38,28 @@ function ExpensesRegister() {
 
   const handleForm = (data: any) => {
     const current = new Date(data.date);
+    const day = current.getDate();
+    const month = current.getMonth() + 1;
+    const year = current.getFullYear();
+    const stringDate = `${day < 10 ? `0${day}` : day}/${
+      month < 10 ? `0${month}` : month
+    }/${year}`;
+    const newExpense = {
+      id: finances.expenses.length + 1,
+      name: data.name,
+      value: data.value,
+      group: data.group,
+      subgroup: "",
+      frequency: data.frequency || "única",
+      date: stringDate,
+    };
+    updateFinances({
+      finances: {
+        wage: finances.wage,
+        expenses: [...finances.expenses, newExpense],
+      },
+    });
+    console.log("passou");
   };
 
   return (
@@ -104,6 +133,7 @@ function ExpensesRegister() {
           <input
             type="radio"
             value="única"
+            checked={true}
             id="frequency"
             {...register("frequency")}
           />

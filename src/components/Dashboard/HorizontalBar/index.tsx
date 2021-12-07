@@ -7,100 +7,6 @@ import { useUserInfo } from "../../../providers/UserInfo";
 function HorizontalBar() {
   const { currentExpenses } = useUserInfo();
 
-  const [expenses, setExpenses] = useState([
-    {
-      id: 1,
-      name: "compras bistek",
-      value: 500,
-      group: "mercado",
-      subgroup: "comidas",
-      frequency: "",
-      date: "20/11/2021",
-    },
-    {
-      id: 2,
-      name: "aluguel",
-      value: 1200,
-      group: "aluguel",
-      subgroup: "",
-      frequency: "mensal",
-      date: "",
-    },
-    {
-      id: 3,
-      name: "gasolina",
-      value: 100,
-      group: "transporte",
-      subgroup: "carro",
-      frequency: "semanal",
-      date: "",
-    },
-    {
-      id: 4,
-      name: "consulta oftalmologista",
-      value: 100,
-      group: "saúde",
-      subgroup: "",
-      frequency: "",
-      date: "14/11/2021",
-    },
-    {
-      id: 5,
-      name: "ração",
-      value: 150,
-      group: "animais",
-      subgroup: "",
-      frequency: "",
-      date: "17/11/2021",
-    },
-    {
-      id: 6,
-      name: "pizza",
-      value: 150,
-      group: "alimentação",
-      subgroup: "",
-      frequency: "",
-      date: "19/11/2021",
-    },
-    {
-      id: 7,
-      name: "geladal",
-      value: 120,
-      group: "lazer",
-      subgroup: "",
-      frequency: "",
-      date: "19/11/2021",
-    },
-    {
-      id: 8,
-      name: "passado",
-      value: 1200,
-      group: "TESTE",
-      subgroup: "",
-      frequency: "",
-      date: "04/10/2021",
-    },
-    {
-      id: 9,
-      name: "futuro",
-      value: 800,
-      group: "TESTE",
-      subgroup: "",
-      frequency: "",
-      date: "06/12/2021",
-    },
-    {
-      id: 10,
-      name: "futuro",
-      value: 20,
-      group: "saúde",
-      subgroup: "",
-      frequency: "",
-      date: "06/12/2021",
-    },
-  ]);
-
-  const [expensesByGroup, setExpensesByGroup] = useState({});
   const [expensesEntriesSorted, setExpensesEntriesSorted] = useState<
     [string, number][]
   >([]);
@@ -116,7 +22,7 @@ function HorizontalBar() {
       },
       {}
     );
-    setExpensesByGroup(newExpensesByGroup);
+
     setExpensesEntriesSorted(
       Object.entries(newExpensesByGroup).sort((a, b) => b[1] - a[1])
     );
@@ -131,25 +37,6 @@ function HorizontalBar() {
   useEffect(() => {
     chartDataGen();
   }, [currentExpenses]);
-
-  // const expensesByGroup: { group: number } = expenses.reduce<any>(
-  //   (acm: any, cv: ExpenseData) => {
-  //     const { group, value } = cv;
-  //     return acm[group] === undefined
-  //       ? { ...acm, [group]: value }
-  //       : { ...acm, [group]: acm[group] + value };
-  //   },
-  //   {}
-  // );
-
-  // const expensesEntriesSorted = Object.entries(expensesByGroup).sort(
-  //   (a, b) => b[1] - a[1]
-  // );
-  // const expensesValues = Object.values(expensesByGroup);
-
-  // const maxValue = expensesValues.reduce((acm: number, cv: number) => {
-  //   return acm > cv ? acm : cv;
-  // }, expensesValues[0]);
 
   return (
     <HorizontalBarStyled>

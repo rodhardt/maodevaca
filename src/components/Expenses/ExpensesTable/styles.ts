@@ -22,4 +22,16 @@ export const ExpensesTableStyled = styled.section`
     display: block;
     cursor: pointer;
   }
+
+  tr:hover {
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .delete-icon {
+    color: #ee0000;
+  }
+  .delete-icon:hover {
+    color: #aa0000;
+  }
 `;

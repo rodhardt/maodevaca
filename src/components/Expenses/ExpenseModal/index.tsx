@@ -1,34 +1,40 @@
 import { ExpenseModalStyled } from "./styles";
+import { ExpenseData } from "../../../assets/types";
 
-function ExpenseModal() {
+interface ExpenseModalProps {
+  expense: ExpenseData;
+  closeModal: () => void;
+}
+
+function ExpenseModal({ expense, closeModal }: ExpenseModalProps) {
   return (
     <ExpenseModalStyled>
-      <div className="opacity"></div>
+      <div className="opacity" onClick={() => closeModal()}></div>
       <div className="expense-card">
         <table>
           <tr>
             <th>Nome</th>
-            <td>Compras bistek</td>
+            <td>{expense.name}</td>
           </tr>
           <tr>
             <th>Valor</th>
-            <td>R$ 550,00</td>
+            <td>R$ {expense.value.toFixed(2).replace(".", ",")}</td>
           </tr>
           <tr>
             <th>Grupo</th>
-            <td>Alimentação</td>
+            <td>{expense.group}</td>
           </tr>
           <tr>
             <th>Sub-grupo</th>
-            <td>bistek</td>
+            <td>{expense.subgroup}</td>
           </tr>
           <tr>
             <th>Frequência</th>
-            <td>Única</td>
+            <td>{expense.frequency}</td>
           </tr>
           <tr>
             <th>Data</th>
-            <td>15/11/2012</td>
+            <td>{expense.date}</td>
           </tr>
         </table>
         <div className="buttons-container">

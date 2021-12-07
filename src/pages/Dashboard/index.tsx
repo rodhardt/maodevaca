@@ -5,7 +5,7 @@ import PieChart from "../../components/Dashboard/PieChart";
 import HorizontalBar from "../../components/Dashboard/HorizontalBar";
 import Links from "../../components/Links";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useUserInfo } from "../../providers/UserInfo";
 
 function Dashboard() {
