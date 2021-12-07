@@ -3,6 +3,16 @@ import styled from "styled-components";
 export const CurrentBalanceStyled = styled.section`
   width: 95%;
   margin: auto;
+  padding-bottom: 35px;
+
+  h2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    padding: 5px;
+    color: #404040;
+    border-bottom: 1px solid #909090;
+  }
 
   table {
     margin: auto;

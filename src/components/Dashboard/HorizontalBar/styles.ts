@@ -4,6 +4,7 @@ export const HorizontalBarStyled = styled.section`
   width: 95%;
   max-width: 900px;
   margin: auto;
+  padding-bottom: 35px;
 
   table {
     border-collapse: collapse;
@@ -40,6 +41,10 @@ export const HorizontalBarStyled = styled.section`
     padding: 0 3px;
     background-color: #ffffff;
     font-size: 14px;
+  }
+
+  .bar-value:hover label {
+    font-weight: bold;
   }
 
   td {

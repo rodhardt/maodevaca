@@ -4,4 +4,5 @@ export const PieChartStyled = styled.section`
   width: 95%;
   margin: auto;
   max-width: 450px;
+  padding-bottom: 35px;
 `;
