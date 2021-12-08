@@ -10,6 +10,7 @@ export const ExpensesTableStyled = styled.section`
     max-width: 720px;
     margin: auto;
     border-collapse: collapse;
+    border-radius: 7px;
   }
 
   h3 {
@@ -35,8 +36,18 @@ export const ExpensesTableStyled = styled.section`
   }
 
   th {
-    background-color: #dddddd;
-    color: #404040;
+    background-color: #9090f0;
+    color: #ffffff;
+  }
+
+  th:first-child,
+  tr:first-child {
+    border-top-left-radius: 7px;
+  }
+
+  th:last-child,
+  tr:first-child {
+    border-top-right-radius: 7px;
   }
 
   tr,
@@ -54,7 +65,7 @@ export const ExpensesTableStyled = styled.section`
   }
 
   tr:nth-child(2n + 1):not(.title-row) {
-    background-color: #e8e8e8;
+    background-color: #9090f030;
   }
 
   .title-row {

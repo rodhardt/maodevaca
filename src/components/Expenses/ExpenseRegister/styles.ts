@@ -10,10 +10,10 @@ export const ExpensesRegisterStyled = styled.section`
   h2 {
     margin-bottom: 15px;
     text-align: center;
-    background-color: #dddddd;
+    background-color: #9090f0;
     border-radius: 7px;
     padding: 5px;
-    color: #404040;
+    color: #ffffff;
   }
 
   .fail {
