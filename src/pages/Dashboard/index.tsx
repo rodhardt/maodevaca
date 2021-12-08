@@ -7,9 +7,14 @@ import Links from "../../components/Links";
 
 import { useEffect } from "react";
 import { useUserInfo } from "../../providers/UserInfo";
+import { useNavigate } from "react-router-dom";
+
+import { FaMoneyBillAlt } from "react-icons/fa";
 
 function Dashboard() {
-  const { getUserInfo, finances, getCurrentExpenses } = useUserInfo();
+  let navigate = useNavigate();
+  const { getUserInfo, finances, getCurrentExpenses, currentExpenses } =
+    useUserInfo();
 
   useEffect(() => {
     getUserInfo();
@@ -25,8 +30,20 @@ function Dashboard() {
       <DashboardStyled>
         <Links isDashboard={true} />
         <CurrentBalance />
-        <PieChart />
-        <HorizontalBar />
+        {currentExpenses.length > 0 ? (
+          <>
+            {" "}
+            <PieChart />
+            <HorizontalBar />{" "}
+          </>
+        ) : (
+          <div className="current-empty">
+            <p>Não há nenhum gasto no período</p>
+            <FaMoneyBillAlt />
+            <p>Registre em:</p>
+            <button onClick={() => navigate("/gastos")}>Gastos</button>
+          </div>
+        )}
       </DashboardStyled>
     </>
   );

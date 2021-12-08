@@ -40,8 +40,6 @@ function HorizontalBar() {
 
   return (
     <HorizontalBarStyled>
-      <h2>Gastos</h2>
-
       <table>
         {expensesEntriesSorted.map(
           (group: [group: string, value: number], index: number) => (

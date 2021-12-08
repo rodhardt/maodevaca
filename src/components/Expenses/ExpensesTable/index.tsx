@@ -38,17 +38,24 @@ function ExpensesTable() {
 
   return (
     <>
+      {isExpenseOpen && (
+        <ExpenseModal modalExpense={expenseForModal} closeModal={closeModal} />
+      )}
       <ExpensesTableStyled>
-        {isExpenseOpen && (
-          <ExpenseModal expense={expenseForModal} closeModal={closeModal} />
-        )}
         <table>
           <tr className="heads">
             <th className="head-name">Nome</th>
-            <th className="head-value">Valor</th>
+            <th className="head-value">Valor (R$)</th>
             <th className="head-date">Data</th>
             <th className="head-icons"></th>
           </tr>
+          {currentExpenses.length === 0 && (
+            <tr>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+          )}
           {currentExpenses
             .sort((a, b) => {
               return (
@@ -81,12 +88,23 @@ function ExpensesTable() {
                 </div>
               </tr>
             ))}
+
           <tr className="title-row">
             <h3>Despesas de outros períodos</h3>
             <td></td>
             <td></td>
             <td></td>
           </tr>
+
+          {finances.expenses.filter((expense) =>
+            currentExpenses.every((current) => current.id !== expense.id)
+          ).length === 0 && (
+            <tr>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+          )}
           {finances.expenses
             .filter((expense) =>
               currentExpenses.every((current) => current.id !== expense.id)
