@@ -174,11 +174,28 @@ export const ExpenseModalStyled = styled.div`
     font-weight: 400;
     color: #202020;
     width: 120px;
-    height: 20px;
+    height: 23px;
     font-size: 12px;
   }
 
   td svg {
     margin: 4px 0 0;
+  }
+
+  @media screen and (min-width: 510px) {
+    th,
+    td,
+    table input,
+    table select {
+      font-size: 16px;
+    }
+
+    input::placeholder,
+    .new-date input {
+      font-size: 16px;
+    }
+    .new-date input {
+      width: 180px;
+    }
   }
 `;

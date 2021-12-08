@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const CurrentBalanceStyled = styled.section`
   width: 95%;
-  margin: auto;
+  max-width: 494px;
+  margin: 0 auto;
   padding-bottom: 35px;
 
   h2 {
@@ -88,6 +89,11 @@ export const CurrentBalanceStyled = styled.section`
   .profit {
     background-color: #00ff0030;
     color: #005000;
+  }
+
+  .loss {
+    background-color: #ff000020;
+    color: #aa0000;
   }
 
   .wage-row button {

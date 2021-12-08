@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const HorizontalBarStyled = styled.section`
   width: 95%;
-  max-width: 900px;
+  max-width: 600px;
   margin: auto;
-  padding-bottom: 35px;
+  padding-bottom: 70px;
 
   table {
     border-collapse: collapse;

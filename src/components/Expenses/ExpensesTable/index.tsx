@@ -103,6 +103,7 @@ function ExpensesTable() {
               <td>-</td>
               <td>-</td>
               <td>-</td>
+              <td></td>
             </tr>
           )}
           {finances.expenses

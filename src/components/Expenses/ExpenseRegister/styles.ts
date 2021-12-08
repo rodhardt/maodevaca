@@ -117,4 +117,18 @@ export const ExpensesRegisterStyled = styled.section`
     font-weight: bold;
     background-color: #e663a360;
   }
+
+  @media screen and (max-width: 319px) {
+    label:first-child {
+      width: 100%;
+    }
+    .input-container {
+      height: auto;
+    }
+
+    .input-container input,
+    .input-container select {
+      height: auto;
+    }
+  }
 `;

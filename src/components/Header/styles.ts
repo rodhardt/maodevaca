@@ -61,4 +61,8 @@ export const HeaderStyled = styled.header`
   .logout-container p {
     display: none;
   }
+
+  @media screen and (min-width: 750px) {
+    padding: 0 calc(50% - 350px);
+  }
 `;

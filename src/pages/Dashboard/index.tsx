@@ -5,7 +5,7 @@ import PieChart from "../../components/Dashboard/PieChart";
 import HorizontalBar from "../../components/Dashboard/HorizontalBar";
 import Links from "../../components/Links";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useUserInfo } from "../../providers/UserInfo";
 import { useNavigate } from "react-router-dom";
 
@@ -29,20 +29,26 @@ function Dashboard() {
       <Header />
       <DashboardStyled>
         <Links isDashboard={true} />
-        <CurrentBalance />
+
         {currentExpenses.length > 0 ? (
           <>
-            {" "}
-            <PieChart />
-            <HorizontalBar />{" "}
+            <div className="info-container">
+              <CurrentBalance />
+              <PieChart />
+            </div>
+
+            <HorizontalBar />
           </>
         ) : (
-          <div className="current-empty">
-            <p>Não há nenhum gasto no período</p>
-            <FaMoneyBillAlt />
-            <p>Registre em:</p>
-            <button onClick={() => navigate("/gastos")}>Gastos</button>
-          </div>
+          <>
+            <CurrentBalance />
+            <div className="current-empty">
+              <p>Não há nenhum gasto no período</p>
+              <FaMoneyBillAlt />
+              <p>Registre em:</p>
+              <button onClick={() => navigate("/gastos")}>Gastos</button>
+            </div>
+          </>
         )}
       </DashboardStyled>
     </>

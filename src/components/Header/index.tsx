@@ -2,7 +2,16 @@ import { HeaderStyled } from "./styles";
 import Logo from "../../assets/images/mao-de-vaca.png";
 import { MdOutlineLogout } from "react-icons/md";
 
+import { useNavigate } from "react-router-dom";
+
 function Header() {
+  let navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
+
   return (
     <HeaderStyled>
       <div className="logo-container">
@@ -11,7 +20,7 @@ function Header() {
         </div>
         <h1>mão-de-vaca</h1>
       </div>
-      <div className="logout-container">
+      <div className="logout-container" onClick={() => logout()}>
         <MdOutlineLogout />
         <p>Logout</p>
       </div>

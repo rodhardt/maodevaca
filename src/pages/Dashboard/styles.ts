@@ -1,6 +1,17 @@
 import styled from "styled-components";
 
 export const DashboardStyled = styled.main`
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1180px;
+  margin: auto;
+
+  .info-container {
+    width: 95%;
+    max-width: 515px;
+    margin: auto;
+  }
+
   .current-empty {
     width: 90%;
     margin: 70px auto;
