@@ -24,7 +24,7 @@ export const ExpenseModalStyled = styled.div`
     min-width: 278px;
     max-width: 520px;
     min-height: 200px;
-    color: black;
+    color: #202020;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -82,6 +82,7 @@ export const ExpenseModalStyled = styled.div`
   tr {
     border-bottom: 1px solid #505050;
     line-height: 1.6;
+    height: 32px;
   }
 
   tr:last-child {
@@ -136,9 +137,8 @@ export const ExpenseModalStyled = styled.div`
     color: white;
   }
 
-  td:first-child {
-    width: 100%;
-    background-color: red;
+  td:nth-child(2) {
+    width: 55%;
   }
 
   td:last-child {
@@ -149,6 +149,9 @@ export const ExpenseModalStyled = styled.div`
   table select {
     width: 100%;
     height: 100%;
+    margin-left: 4px;
+    font-size: 14px;
+    text-align: center;
   }
 
   input,
@@ -159,5 +162,23 @@ export const ExpenseModalStyled = styled.div`
     color: #303030;
     text-align: center;
     width: 100%;
+  }
+
+  .new-group input::placeholder,
+  .new-date input::placeholder {
+    font-weight: 400;
+    color: #20202090;
+  }
+
+  .new-date input {
+    font-weight: 400;
+    color: #202020;
+    width: 120px;
+    height: 20px;
+    font-size: 12px;
+  }
+
+  td svg {
+    margin: 4px 0 0;
   }
 `;
